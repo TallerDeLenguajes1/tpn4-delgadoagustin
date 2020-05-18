@@ -13,6 +13,7 @@ typedef struct {
 
 void cargar(Tarea ** arreglo, int n);
 void mostrarTarea(Tarea T);
+void buscarClave(Tarea ** arreglo, int n);
 
 int main(){
 
@@ -60,6 +61,8 @@ int main(){
         }
     }
 
+    buscarClave(tareasRealizadas,cantTareas);
+
     getchar(); //Stop
     return 0;
 }
@@ -78,8 +81,18 @@ void cargar(Tarea ** arreglo, int n){
 }
 
 void mostrarTarea(Tarea T){
-    
     printf("ID: %d\n",T.TareaID);
     printf("%s\n",T.Descripcion);
     printf("Duracion: %d\n\n",T.Duracion);
+}
+
+void buscarClave(Tarea ** arreglo, int n){
+    char clave[10];
+    printf("Ingresa la palabra clave: ");
+    gets(clave);
+    for (int i=0; i<n; i++){
+        if(arreglo[i]!=NULL && strstr((*arreglo[i]).Descripcion,clave)){
+            mostrarTarea(*arreglo[i]);
+        }
+    }
 }
