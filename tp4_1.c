@@ -13,6 +13,7 @@ typedef struct {
 
 void cargar(Tarea ** arreglo, int n);
 void mostrarTarea(Tarea T);
+void buscarID(Tarea **arreglo, int id, int n);
 
 int main(){
 
@@ -60,6 +61,8 @@ int main(){
         }
     }
 
+    buscarID(tareasRealizadas,1,cantTareas);
+
     getchar(); //Stop
     return 0;
 }
@@ -78,8 +81,17 @@ void cargar(Tarea ** arreglo, int n){
 }
 
 void mostrarTarea(Tarea T){
-    
     printf("ID: %d\n",T.TareaID);
     printf("%s\n",T.Descripcion);
     printf("Duracion: %d\n\n",T.Duracion);
+}
+
+void buscarID(Tarea **arreglo, int id, int n){
+    for (int i=0;i<n;i++){
+        if (arreglo[i]!=NULL && arreglo[i]->TareaID==id){
+            printf("Encontrado\n");
+            mostrarTarea(*arreglo[i]);
+            break;
+        }
+    }
 }
