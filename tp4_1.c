@@ -19,6 +19,7 @@ int main(){
     srand(time(NULL));
 
     int cantTareas;
+    char x;
     Tarea ** tareasPendientes;
     Tarea ** tareasRealizadas;
 
@@ -32,6 +33,31 @@ int main(){
 
     for(int i=0;i<cantTareas;i++){
         mostrarTarea(*tareasPendientes[i]);
+        printf("¿Realizo la tarea?(y/n): ");
+        scanf("%c",&x);
+        getchar();
+        if(x=='y'){
+            tareasRealizadas[i]=(Tarea*)malloc(sizeof(Tarea));
+            tareasRealizadas[i]=tareasPendientes[i];
+            tareasPendientes[i]=NULL;
+        }
+        else{
+            tareasRealizadas[i]=NULL;
+        }
+        
+    }
+
+    printf("Tareas Realizadas\n");
+    for(int i=0;i<cantTareas;i++){
+        if(tareasRealizadas[i]!=NULL){
+            mostrarTarea(*tareasRealizadas[i]);
+        }
+    }
+    printf("Tareas Pendientes\n");
+    for(int i=0;i<cantTareas;i++){
+        if(tareasPendientes[i]!=NULL){
+            mostrarTarea(*tareasPendientes[i]);
+        }
     }
 
     getchar(); //Stop
@@ -52,6 +78,7 @@ void cargar(Tarea ** arreglo, int n){
 }
 
 void mostrarTarea(Tarea T){
+    
     printf("ID: %d\n",T.TareaID);
     printf("%s\n",T.Descripcion);
     printf("Duracion: %d\n\n",T.Duracion);
