@@ -73,7 +73,7 @@ void mostrarTarea(Tarea T){
 
 void mostrarLista(Nodo * Lista){
     if(Lista!=NULL){
-        while (Lista->siguiente!=NULL){
+        while (Lista!=NULL){
             mostrarTarea(Lista->T);
             Lista=Lista->siguiente;
         }
