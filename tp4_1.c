@@ -14,6 +14,7 @@ typedef struct {
 void cargar(Tarea ** arreglo, int n);
 void mostrarTarea(Tarea T);
 void buscarClave(Tarea ** arreglo, int n);
+void buscarID(Tarea **arreglo, int id, int n);
 
 int main(){
 
@@ -62,6 +63,7 @@ int main(){
     }
 
     buscarClave(tareasRealizadas,cantTareas);
+    buscarID(tareasRealizadas,1,cantTareas);
 
     getchar(); //Stop
     return 0;
@@ -93,6 +95,12 @@ void buscarClave(Tarea ** arreglo, int n){
     for (int i=0; i<n; i++){
         if(arreglo[i]!=NULL && strstr((*arreglo[i]).Descripcion,clave)){
             mostrarTarea(*arreglo[i]);
+void buscarID(Tarea **arreglo, int id, int n){
+    for (int i=0;i<n;i++){
+        if (arreglo[i]!=NULL && arreglo[i]->TareaID==id){
+            printf("Encontrado\n");
+            mostrarTarea(*arreglo[i]);
+            break;
         }
     }
 }
